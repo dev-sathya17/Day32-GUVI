@@ -1,0 +1,48 @@
+.sub-total {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  border-bottom: 1px solid #cacaca;
+  padding-bottom: 30px;
+}
+
+.sub-total div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.name > h3,
+.name > h4 {
+  font-weight: 500;
+  color: #868686;
+}
+
+.sub-amount {
+  text-align: right;
+}
+
+.final-total {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding-bottom: 30px;
+}
+
+.final-total-amount {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.final-total-amount h4 {
+  color: #ff612c;
+}
+
+@media screen and (max-width: 768px) {
+  .final-total,
+  .sub-total {
+    width: 85%;
+  }
+}

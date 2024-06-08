@@ -1,7 +1,12 @@
 import "./App.css";
+import Cart from "./components/Cart";
 
 function App() {
-  return <div>Hello World!</div>;
+  return (
+    <>
+      <Cart />
+    </>
+  );
 }
 
 export default App;
