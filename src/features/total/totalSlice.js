@@ -11,9 +11,15 @@ export const totalSlice = createSlice({
   initialState: {
     value: totalAmount(),
   },
-  reducers: {},
+  reducers: {
+    change: (state, action) => {
+      state.value = action.payload;
+    },
+  },
 });
 
 export default totalSlice.reducer;
+
+export const { change } = totalSlice.actions;
 
 export const totalValue = (state) => state.total.value;

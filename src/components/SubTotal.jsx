@@ -3,6 +3,7 @@ import "./components.css";
 import { totalValue } from "../features/total/totalSlice";
 
 const SubTotal = () => {
+  // Fetching the total value from the redux slice.
   const total = useSelector(totalValue);
 
   return (

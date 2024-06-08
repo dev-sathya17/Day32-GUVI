@@ -1,8 +1,39 @@
 import { useState } from "react";
 import "./Card.css";
+import { useDispatch } from "react-redux";
+import { change } from "../../features/total/totalSlice";
+
+// A card component which recieves data to be rendered, a re-render function and a prices object to handle calculation of total.
 const Card = ({ data, prices, handleRender }) => {
   const [quantity, setQuantity] = useState(1);
   const [pricesData, _] = useState(prices);
+
+  // dispatch hook used to dispatch our values to redux slice.
+  const dispatch = useDispatch();
+
+  // function to delete product from cart and re-calculate total.
+  const handleClick = (id) => {
+    delete pricesData[id];
+    dispatch(change(UpdateTotal(pricesData)));
+    handleRender(id);
+  };
+
+  // function to calculate total.
+  const UpdateTotal = (prices) => {
+    let total = 0;
+    for (let price in prices) {
+      total += prices[price].price * prices[price].quantity;
+    }
+    return total;
+  };
+  // function to handle change in quantity and update the total.
+  const handleChange = (e, id) => {
+    if (quantity !== "") {
+      setQuantity(parseInt(e.target.value));
+      pricesData[id].quantity = parseInt(e.target.value);
+      dispatch(change(UpdateTotal(pricesData)));
+    }
+  };
 
   return (
     <div className="card">
@@ -23,12 +54,14 @@ const Card = ({ data, prices, handleRender }) => {
             className="quantity-input"
             min={1}
             value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
+            onChange={(e) => handleChange(e, data.id)}
           />
         </div>
         <div className="amount">
           <h3>${!isNaN(data.price * quantity) ? data.price * quantity : ""}</h3>
-          <span className="btn">REMOVE</span>
+          <span className="btn" onClick={() => handleClick(data.id)}>
+            REMOVE
+          </span>
         </div>
       </div>
     </div>
