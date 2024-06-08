@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux";
 import "./components.css";
+import { totalValue } from "../features/total/totalSlice";
 
 const SubTotal = () => {
+  const total = useSelector(totalValue);
+
   return (
     <>
       <div className="sub-total">
@@ -9,7 +13,7 @@ const SubTotal = () => {
           <h4>SHIPPING :</h4>
         </div>
         <div className="sub-amount">
-          <h3>$3476</h3>
+          <h3>${total}</h3>
           <h4>FREE</h4>
         </div>
       </div>
